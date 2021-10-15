@@ -3,8 +3,16 @@ const { NotFound } = require('http-errors');
 const { StatusCodes } = require('http-status-codes');
 
 const geocodingMiddleware = async (req, res, next) => {
-  const { city } = req.body;
+  let { city } = req.body;
   if (!city) {
+    city = await axios.get(process.env.REVERSE_GEOCODING_URL, {
+      params: {
+        lat: req.body.lat,
+        lon: req.body.lon,
+        key: process.env.GEOCODING_KEY,
+      },
+    });
+    req.body.city = city;
     return next();
   }
 
