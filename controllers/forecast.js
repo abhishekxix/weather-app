@@ -1,7 +1,24 @@
 const axios = require('axios');
 
-const getForecast = async (req, res) => {
-  res.send('Forecast');
+const getHourlyForecast = async (req, res) => {
+  res.send('hourly');
 };
 
-module.exports = getForecast;
+const getMinutelyForecast = async (req, res) => {
+  res.send('minutely');
+};
+
+const getDailyForecast = async (req, res) => {
+  res.send('daily');
+};
+
+const getForecast = async (req, res) => {
+  res.send('total forecast');
+};
+
+module.exports = {
+  getHourlyForecast,
+  getMinutelyForecast,
+  getDailyForecast,
+  getForecast,
+};
