@@ -12,6 +12,7 @@ const getCurrentWeather = async (req, res) => {
       appId: process.env.API_KEY,
     },
   });
+  weatherData.data.city = req.body.city;
   res.status(weatherData.status).json(weatherData.data);
 };
 

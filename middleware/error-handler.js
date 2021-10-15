@@ -1,8 +1,13 @@
 const { StatusCodes } = require('http-status-codes');
+const { CustomAPIError } = require('../errors/');
 
-const errorHandlerMiddleware = (error, req, res, next) => {
-  res.status(StatusCodes.BAD_REQUEST).send('Not enough data provided');
-  next();
+const errorHandlerMiddleware = (err, req, res, next) => {
+  if (err instanceof CustomAPIError) {
+    return res.status(err.statusCode).json({ msg: err.message });
+  }
+  return res
+    .status(StatusCodes.INTERNAL_SERVER_ERROR)
+    .send('Something went wrong try again later');
 };
 
 module.exports = errorHandlerMiddleware;
