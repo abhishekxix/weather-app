@@ -1,7 +1,18 @@
 const axios = require('axios');
+const StatusCodes = require('http-status-codes');
 
 const getCurrentWeather = async (req, res) => {
-  res.send('Current Weather');
+  const weatherData = await axios.get(process.env.API_URL + '/onecall', {
+    method: 'get',
+    params: {
+      lat: req.body.lat,
+      lon: req.body.lon,
+      exclude: 'hourly,minutely,daily',
+      units: req.body.units,
+      appId: process.env.API_KEY,
+    },
+  });
+  res.status(weatherData.status).json(weatherData.data);
 };
 
 module.exports = getCurrentWeather;
