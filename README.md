@@ -2,7 +2,7 @@
 
 ---
 
-##### Installation Steps:
+#### Installation Steps:
 
 1. Make sure you have nodejs and npm installed
 2. Clone the repo: `git clone https://abhishekxix/weather-app.git`
@@ -11,7 +11,7 @@
 
 ---
 
-##### Following are the API routes:
+#### Following are the API routes:
 
 - `/api/v1/current`
 - `/api/v1/forecast/`
@@ -23,7 +23,7 @@
 
 ---
 
-##### Required query params:
+#### Required query params:
 
 - /api/v1/
   - /current
