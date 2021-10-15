@@ -10,9 +10,10 @@ const geocodingMiddleware = async (req, res, next) => {
         lat: req.body.lat,
         lon: req.body.lon,
         key: process.env.GEOCODING_KEY,
+        format: 'json',
       },
     });
-    req.body.city = city;
+    req.body.city = city.data.address;
     return next();
   }
 
