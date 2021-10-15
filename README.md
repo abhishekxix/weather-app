@@ -25,17 +25,22 @@
 
 #### Required query params:
 
+Supply either the lat, long or the city or both.
+
 - /api/v1/
   - /current
     - lat - lattitude
     - lon - longitude
+    - city name
     - units - metric/standard/imperial
   - /forecast | _including the minutely, hourly, and daily forecast routes_ |
     - lat - lattitude
     - lon - longitude
+    - city name
     - units - metric/standard/imperial
   - /pollution and pollution/forecast
     - lat - lattitude
     - lon - longitude
+    - city name
 
 ---
