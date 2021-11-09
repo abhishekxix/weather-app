@@ -6,9 +6,9 @@ const {
 const geocodingMiddleware = require('../middleware/geocoding-middleware');
 const pollutionRouter = express.Router();
 
-pollutionRouter.route('/').get(geocodingMiddleware, getCurrentPollution);
+pollutionRouter.route('/').post(geocodingMiddleware, getCurrentPollution);
 pollutionRouter
   .route('/forecast')
-  .get(geocodingMiddleware, getForecastPollution);
+  .post(geocodingMiddleware, getForecastPollution);
 
 module.exports = pollutionRouter;

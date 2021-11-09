@@ -13,7 +13,11 @@ const geocodingMiddleware = async (req, res, next) => {
         format: 'json',
       },
     });
-    req.body.city = city.data.address;
+    req.body.city =
+      city.data.address.county ??
+      city.data.address.municipality ??
+      city.data.address.state ??
+      city.data.address.state.country;
     return next();
   }
 

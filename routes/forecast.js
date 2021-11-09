@@ -14,8 +14,8 @@ const forecastRouter = express.Router();
 // forecastRouter.route('/daily').get(geocodingMiddleware, getDailyForecast);
 
 forecastRouter.use(geocodingMiddleware);
-forecastRouter.route('/').get(getForecast);
-forecastRouter.route('/minutely').get(getMinutelyForecast);
-forecastRouter.route('/hourly').get(getHourlyForecast);
-forecastRouter.route('/daily').get(getDailyForecast);
+forecastRouter.route('/').post(getForecast);
+forecastRouter.route('/minutely').post(getMinutelyForecast);
+forecastRouter.route('/hourly').post(getHourlyForecast);
+forecastRouter.route('/daily').post(getDailyForecast);
 module.exports = forecastRouter;
