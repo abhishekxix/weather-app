@@ -7,10 +7,12 @@ const errorHandlerMiddleware = require('./middleware/error-handler');
 const pollutionRouter = require('./routes/pollution');
 const notFound = require('./middleware/not-found');
 const app = express();
+const cors = require('cors');
 
 // middleware
 app.use(express.static('./public'));
 app.use(express.json());
+app.use(cors());
 
 app.use(errorHandlerMiddleware);
 // routes
