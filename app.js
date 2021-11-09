@@ -8,11 +8,13 @@ const pollutionRouter = require('./routes/pollution');
 const notFound = require('./middleware/not-found');
 const app = express();
 const cors = require('cors');
+const morgan = require('morgan');
 
 // middleware
 app.use(express.static('./public'));
 app.use(express.json());
 app.use(cors());
+app.use(morgan('tiny'));
 
 app.use(errorHandlerMiddleware);
 // routes
