@@ -79,15 +79,23 @@ searchBtn.addEventListener('click', async function (evt) {
 });
 
 async function doTheDeed({ city, coord }) {
-  let currentWeather = await getData(currentWeatherURL, city, coord);
+  let [currentWeather, statusc] = await getData(currentWeatherURL, city, coord);
+  if (statusc === 404) {
+    return alert(`${city} not found.`);
+  }
+  if (statusc === 500) {
+    return alert(`Internal Server Error.`);
+  }
   setCurrentWeather(currentWeather);
 
-  let currentPollution = await getData(currentPollutionURL, city, coord);
+  let [currentPollution] = await getData(currentPollutionURL, city, coord);
+
   setCurrentPollution(currentPollution);
 
-  let hourly = await getData(forecastWeatherURL + 'hourly', city, coord);
+  let [hourly] = await getData(forecastWeatherURL + 'hourly', city, coord);
+
   setHourlyForecast(hourly);
 
-  let daily = await getData(forecastWeatherURL + 'daily', city, coord);
+  let [daily] = await getData(forecastWeatherURL + 'daily', city, coord);
   setDailyForecast(daily);
 }

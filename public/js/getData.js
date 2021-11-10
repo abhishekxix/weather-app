@@ -14,14 +14,5 @@ export const getData = async (url, city, coord) => {
     }),
   });
 
-  if (response.status === 404) {
-    alert(`${city} not found. Please try again.`);
-    return;
-  }
-  if (response.status === 500) {
-    alert(`Internal Server Error.`);
-    return;
-  }
-
-  return await response.json();
+  return [await response.json(), response.status];
 };
