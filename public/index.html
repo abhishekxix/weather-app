@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Forecasting System</title>
+    <!-- normalize -->
+    <link rel="stylesheet" href="./css/normalize.css" />
+    <!-- main css -->
+    <link rel="stylesheet" href="./css/main.css" />
+
+    <script
+      src="https://kit.fontawesome.com/7c5c74abd1.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <header>
+      <div class="search container">
+        <input type="text" placeholder="Search city" class="search-box" />
+        <button class="btn search-btn"><i class="fas fa-search"></i></button>
+      </div>
+    </header>
+    <main>
+      <div class="container spaced-around">
+        <div class="card weather">
+          <h3>Current Weather</h3>
+          <ul class="result-list current-weather-list"></ul>
+        </div>
+        <div class="card pollution">
+          <h3>Current Pollution</h3>
+          <ul class="result-list current-pollution-list"></ul>
+        </div>
+      </div>
+
+      <section class="forecast">
+        <h3 class="hourly">hourly forecast</h3>
+        <ul class="forecast-grid space-around">
+          <li class="card hourly-forecast-card">
+            <h3></h3>
+            <ul class="result-list"></ul>
+          </li>
+          <li class="card hourly-forecast-card">
+            <h3></h3>
+            <ul class="result-list"></ul>
+          </li>
+          <li class="card hourly-forecast-card">
+            <h3></h3>
+            <ul class="result-list"></ul>
+          </li>
+          <li class="card hourly-forecast-card">
+            <h3></h3>
+            <ul class="result-list"></ul>
+          </li>
+          <li class="card hourly-forecast-card">
+            <h3></h3>
+            <ul class="result-list"></ul>
+          </li>
+          <li class="card hourly-forecast-card">
+            <h3></h3>
+            <ul class="result-list"></ul>
+          </li>
+        </ul>
+
+        <h3 class="daily">daily forecast</h3>
+        <ul class="forecast-grid space-around daily-forecast-grid">
+          <li class="card daily-forecast-card">
+            <h3></h3>
+            <ul class="result-list"></ul>
+          </li>
+          <li class="card daily-forecast-card">
+            <h3></h3>
+            <ul class="result-list"></ul>
+          </li>
+          <li class="card daily-forecast-card">
+            <h3></h3>
+            <ul class="result-list"></ul>
+          </li>
+          <li class="card daily-forecast-card">
+            <h3></h3>
+            <ul class="result-list"></ul>
+          </li>
+          <li class="card daily-forecast-card">
+            <h3></h3>
+            <ul class="result-list"></ul>
+          </li>
+          <li class="card daily-forecast-card">
+            <h3></h3>
+            <ul class="result-list"></ul>
+          </li>
+          <li class="card daily-forecast-card span-two">
+            <h3></h3>
+            <ul class="result-list"></ul>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <script src="./js/app.js" type="module"></script>
+  </body>
+</html>

@@ -13,7 +13,6 @@ const morgan = require('morgan');
 // middleware
 app.use(express.static('./public'));
 app.use(express.json());
-app.use(cors());
 app.use(morgan('tiny'));
 
 app.use(errorHandlerMiddleware);
