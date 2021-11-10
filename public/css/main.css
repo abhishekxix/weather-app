@@ -433,3 +433,10 @@ main {
 li {
   text-transform: capitalize;
 }
+
+.location-btn {
+  margin-right: 0.5rem;
+  width: 5rem;
+  height: 2.25rem;
+  border-radius: 1rem;
+}

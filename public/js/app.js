@@ -13,7 +13,7 @@ import { setDailyForecast } from './set-daily-forecast.js';
 const geo = navigator.geolocation;
 const searchBox = getElement('.search-box');
 const searchBtn = getElement('.search-btn');
-
+const locationBtn = getElement('.location-btn');
 const coord = {
   lat: undefined,
   lon: undefined,
@@ -82,6 +82,14 @@ searchBtn.addEventListener('click', async function (evt) {
     return alert('Please enter a value for city');
   }
   await doTheDeed({ city, coord: undefined });
+});
+
+locationBtn.addEventListener('click', async function (evt) {
+  geo.getCurrentPosition(async (location) => {
+    coord.lat = location.coords.latitude;
+    coord.lon = location.coords.longitude;
+    await doTheDeed({ coord, city: undefined });
+  });
 });
 
 async function doTheDeed({ city, coord }) {
