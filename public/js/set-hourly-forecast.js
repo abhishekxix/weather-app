@@ -3,13 +3,8 @@ import { populateHourlyForecastList } from './populate-weather-list.js';
 
 export const setHourlyForecast = (hourlyForecast) => {
   if (!hourlyForecast) {
-    getElement('.hourly').classList.add('.hidden');
-    getElement('.hourly-forecast-card').classList.add('.hidden');
     return;
   }
-
-  getElement('.hourly').classList.remove('.hidden');
-  getElement('.hourly-forecast-card').classList.remove('.hidden');
 
   const cards = Array.from(getElements('.hourly-forecast-card'));
   const hourly = hourlyForecast.hourly;

@@ -1,14 +1,13 @@
 import { getElement } from './utils/get-element.js';
 
 export const setCurrentPollution = (pollution) => {
+  const currentPollutionList = getElement('.current-pollution-list');
+  currentPollutionList.innerHTML = '';
   if (!pollution) {
-    getElement('.pollution').classList.add('.hidden');
     return;
   }
 
-  getElement('.pollution').classList.remove('.hidden');
   pollution = pollution.list[0];
-  const currentPollutionList = getElement('.current-pollution-list');
   const list = [];
   for (let i = 0; i < 9; i++) {
     list.push(document.createElement('li'));

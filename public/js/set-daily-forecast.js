@@ -3,13 +3,8 @@ import { getElement, getElements } from './utils/get-element.js';
 
 export const setDailyForecast = (dailyForecast) => {
   if (!dailyForecast) {
-    getElement('.daily').classList.add('.hidden');
-    getElement('.daily-forecast-card').classList.add('.hidden');
     return;
   }
-
-  getElement('.daily').classList.remove('.hidden');
-  getElement('.daily-forecast-card').classList.remove('.hidden');
 
   const cards = Array.from(getElements('.daily-forecast-card'));
   const daily = dailyForecast.daily;

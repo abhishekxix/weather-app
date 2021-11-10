@@ -9,6 +9,7 @@ const weatherIcons = new Map([
 
 let city;
 export const populateCurrentWeatherList = (resultList, weather) => {
+  resultList.innerHTML = '';
   const list = [];
   for (let i = 0; i < 8; i++) {
     list.push(document.createElement('li'));
@@ -74,6 +75,8 @@ export const populateCurrentWeatherList = (resultList, weather) => {
 };
 
 export const populateHourlyForecastList = (resultList, data) => {
+  resultList.innerHTML = '';
+
   const list = [];
   for (let i = 0; i < 5; i++) {
     list.push(document.createElement('li'));
@@ -120,6 +123,8 @@ export const populateHourlyForecastList = (resultList, data) => {
 };
 
 export const populateDailyForecastList = (resultList, data) => {
+  resultList.innerHTML = '';
+
   const list = [];
   for (let i = 0; i < 7; i++) {
     list.push(document.createElement('li'));

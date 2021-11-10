@@ -15,12 +15,12 @@ app.use(express.static('./public'));
 app.use(express.json());
 app.use(morgan('tiny'));
 
-app.use(errorHandlerMiddleware);
 // routes
 app.use('/api/v1/current', currentWeatherRouter);
 app.use('/api/v1/forecast', forecastRouter);
 app.use('/api/v1/pollution', pollutionRouter);
 app.use(notFound);
+app.use(errorHandlerMiddleware);
 
 const port = process.env.PORT || 3000;
 
