@@ -15,6 +15,7 @@ export const populateCurrentWeatherList = (resultList, weather) => {
     list.push(document.createElement('li'));
   }
 
+  console.log({ weather });
   const temp = weather.current.temp;
   let level = undefined;
   if (temp < 15) {

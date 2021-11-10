@@ -5,7 +5,7 @@ export const setDailyForecast = (dailyForecast) => {
   if (!dailyForecast) {
     return;
   }
-
+  localStorage.setItem('daily', JSON.stringify(dailyForecast));
   const cards = Array.from(getElements('.daily-forecast-card'));
   const daily = dailyForecast.daily;
   daily.shift();

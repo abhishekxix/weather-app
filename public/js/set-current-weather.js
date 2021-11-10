@@ -5,7 +5,7 @@ export const setCurrentWeather = (weather) => {
   if (!weather) {
     return;
   }
-
+  localStorage.setItem('currentWeather', JSON.stringify(weather));
   const currentWeatherList = getElement('.current-weather-list');
   populateCurrentWeatherList(currentWeatherList, weather);
 };

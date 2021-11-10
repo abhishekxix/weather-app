@@ -21,23 +21,35 @@ const coord = {
 
 window.onload = async function () {
   geo.getCurrentPosition(async (location) => {
-    let c = localStorage.getItem('currentWeather');
-    console.log(c);
-    let p = localStorage.getItem('currentPollution');
-    let h = localStorage.getItem('hourly');
-    let d = localStorage.getItem('daily');
+    let c =
+      localStorage.getItem('currentWeather') === 'undefined'
+        ? undefined
+        : localStorage.getItem('currentWeather');
+    let p =
+      localStorage.getItem('currentPollution') === 'undefined'
+        ? undefined
+        : localStorage.getItem('currentPollution');
+    let h =
+      localStorage.getItem('hourly') === 'undefined'
+        ? undefined
+        : localStorage.getItem('hourly');
+    let d =
+      localStorage.getItem('daily') === 'undefined'
+        ? undefined
+        : localStorage.getItem('daily');
 
-    if (c !== undefined) {
+    if (c) {
+      console.log(c);
       setCurrentWeather(JSON.parse(c));
     }
-    if (p !== undefined) {
-      setCurrentWeather(JSON.parse(p));
+    if (p) {
+      setCurrentPollution(JSON.parse(p));
     }
-    if (h !== undefined) {
-      setCurrentWeather(JSON.parse(h));
+    if (h) {
+      setHourlyForecast(JSON.parse(h));
     }
-    if (d !== undefined) {
-      setCurrentWeather(JSON.parse(d));
+    if (d) {
+      setDailyForecast(JSON.parse(d));
     }
     coord.lat = location.coords.latitude;
     coord.lon = location.coords.longitude;
@@ -68,18 +80,14 @@ searchBtn.addEventListener('click', async function (evt) {
 
 async function doTheDeed({ city, coord }) {
   let currentWeather = await getData(currentWeatherURL, city, coord);
-  localStorage.setItem('currentWeather', JSON.stringify(currentWeather));
   setCurrentWeather(currentWeather);
 
   let currentPollution = await getData(currentPollutionURL, city, coord);
-  localStorage.setItem('currentPollution', JSON.stringify(currentPollution));
   setCurrentPollution(currentPollution);
 
   let hourly = await getData(forecastWeatherURL + 'hourly', city, coord);
-  localStorage.setItem('hourly', JSON.stringify(hourly));
   setHourlyForecast(hourly);
 
   let daily = await getData(forecastWeatherURL + 'daily', city, coord);
-  localStorage.setItem('daily', JSON.stringify(daily));
   setDailyForecast(daily);
 }

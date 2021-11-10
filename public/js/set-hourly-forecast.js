@@ -5,7 +5,7 @@ export const setHourlyForecast = (hourlyForecast) => {
   if (!hourlyForecast) {
     return;
   }
-
+  localStorage.setItem('hourly', JSON.stringify(hourlyForecast));
   const cards = Array.from(getElements('.hourly-forecast-card'));
   const hourly = hourlyForecast.hourly;
   hourly.shift();
