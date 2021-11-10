@@ -20,7 +20,11 @@ const coord = {
 };
 
 window.onload = async function () {
-  geo.getCurrentPosition(async (location) => {
+  let lastTime = localStorage.getItem('time');
+  let curr = new Date(Date.now()).getTime();
+  let res = (curr - lastTime) / 1000 / 60;
+  console.log(res);
+  if (res < 30) {
     let c =
       localStorage.getItem('currentWeather') === 'undefined'
         ? undefined
@@ -39,7 +43,6 @@ window.onload = async function () {
         : localStorage.getItem('daily');
 
     if (c) {
-      console.log(c);
       setCurrentWeather(JSON.parse(c));
     }
     if (p) {
@@ -51,10 +54,13 @@ window.onload = async function () {
     if (d) {
       setDailyForecast(JSON.parse(d));
     }
-    coord.lat = location.coords.latitude;
-    coord.lon = location.coords.longitude;
-    doTheDeed({ coord, city: undefined });
-  });
+  } else {
+    geo.getCurrentPosition(async (location) => {
+      coord.lat = location.coords.latitude;
+      coord.lon = location.coords.longitude;
+      await doTheDeed({ coord, city: undefined });
+    });
+  }
 };
 
 searchBox.addEventListener('keyup', async function (evt) {
@@ -65,7 +71,7 @@ searchBox.addEventListener('keyup', async function (evt) {
   if (evt.keyCode === 13) {
     evt.preventDefault();
     evt.stopPropagation();
-    doTheDeed({ city, coord: undefined });
+    await doTheDeed({ city, coord: undefined });
   }
 });
 
@@ -75,27 +81,32 @@ searchBtn.addEventListener('click', async function (evt) {
   if (!city) {
     return alert('Please enter a value for city');
   }
-  doTheDeed({ city, coord: undefined });
+  await doTheDeed({ city, coord: undefined });
 });
 
 async function doTheDeed({ city, coord }) {
-  let [currentWeather, statusc] = await getData(currentWeatherURL, city, coord);
-  if (statusc === 404) {
+  let currentWeather = await getData(currentWeatherURL, city, coord);
+  if (!currentWeather) {
     return alert(`${city} not found.`);
-  }
-  if (statusc === 500) {
-    return alert(`Internal Server Error.`);
   }
   setCurrentWeather(currentWeather);
 
-  let [currentPollution] = await getData(currentPollutionURL, city, coord);
+  let currentPollution = await getData(currentPollutionURL, city, coord);
 
   setCurrentPollution(currentPollution);
 
-  let [hourly] = await getData(forecastWeatherURL + 'hourly', city, coord);
+  let hourly = await getData(forecastWeatherURL + 'hourly', city, coord);
 
   setHourlyForecast(hourly);
 
-  let [daily] = await getData(forecastWeatherURL + 'daily', city, coord);
+  let daily = await getData(forecastWeatherURL + 'daily', city, coord);
   setDailyForecast(daily);
 }
+
+setInterval(async () => {
+  geo.getCurrentPosition(async (location) => {
+    coord.lat = location.coords.latitude;
+    coord.lon = location.coords.longitude;
+    await doTheDeed({ coord, city: undefined });
+  });
+}, 30 * 60 * 1000);
