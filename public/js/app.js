@@ -64,11 +64,11 @@ window.onload = async function () {
 };
 
 searchBox.addEventListener('keyup', async function (evt) {
-  const city = searchBox.value;
-  if (!city) {
-    return alert('Please enter a value for city');
-  }
   if (evt.keyCode === 13) {
+    const city = searchBox.value;
+    if (!city) {
+      return alert('Please enter a value for city');
+    }
     evt.preventDefault();
     evt.stopPropagation();
     await doTheDeed({ city, coord: undefined });
