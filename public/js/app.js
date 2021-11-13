@@ -23,7 +23,6 @@ window.onload = async function () {
   let lastTime = localStorage.getItem('time');
   let curr = new Date(Date.now()).getTime();
   let res = (curr - lastTime) / 1000 / 60;
-  console.log(res);
   if (res < 30) {
     let c =
       localStorage.getItem('currentWeather') === 'undefined'
